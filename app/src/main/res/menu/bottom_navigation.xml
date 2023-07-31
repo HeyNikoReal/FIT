@@ -4,21 +4,21 @@
     <item
         android:id="@+id/menu_home"
         android:icon="@drawable/ic_home"
-        android:title="Home"
-        app:showAsAction="always" />
+        android:enabled="true"
+        android:title="Home"/>
     <item
         android:id="@+id/menu_game"
         android:icon="@drawable/ic_game"
-        android:title="Game"
-        app:showAsAction="always" />
+        android:enabled="true"
+        android:title="Game"/>
     <item
         android:id="@+id/menu_create"
         android:icon="@drawable/ic_star"
-        android:title="Create"
-        app:showAsAction="always" />
+        android:enabled="true"
+        android:title="Create"/>
     <item
         android:id="@+id/menu_setting"
         android:icon="@drawable/ic_setting"
-        android:title="Setting"
-        app:showAsAction="always" />
+        android:enabled="true"
+        android:title="Setting"/>
 </menu>

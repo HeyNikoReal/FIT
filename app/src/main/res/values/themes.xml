@@ -3,9 +3,9 @@
     <style name="Base.Theme.LittleCare" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="colorPrimary">#39b1f1</item>
-        <item name="colorPrimaryVariant">#39b1f1</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">#39B1F1</item>
+        <item name="colorPrimaryVariant">#39B1F1</item>
+        <item name="colorOnPrimary">#FFF</item>
         <!-- Secondary brand color. -->
     </style>
     <style name="Theme.LittleCare" parent="Base.Theme.LittleCare" />

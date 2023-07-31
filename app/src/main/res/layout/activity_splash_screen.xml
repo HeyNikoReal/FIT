@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/tes"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".activity.MainActivity">
+    android:background="@drawable/bg"
+    tools:context=".Activity.MainActivity">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_centerInParent="true"
         android:src="@drawable/logo" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:text="CREATED BY G11"
+        android:textColor="#C96FE4"
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
 
-</LinearLayout>
+</RelativeLayout>

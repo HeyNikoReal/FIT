@@ -1,54 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity"
-    android:background="@drawable/tes"
-    android:orientation="vertical">
+    tools:context=".Activity.MainActivity">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/logo"
-        android:layout_marginTop="100dp"
-        android:layout_gravity="center_horizontal" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Little Care For Better Childhood"
-        android:layout_gravity="center"
-        android:textSize="22sp"
-        android:textColor="#c96fe4"
-        android:textStyle="bold"
-        />
-
-    <Button
-        android:id="@+id/btn_login"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnv_navigasi_bawah"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="L O G I N"
-        android:layout_marginTop="125dp"
-        android:background="@drawable/corner"
-        android:layout_marginHorizontal="70dp"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        android:padding="12dp"
-        />
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_navigation" />
 
-    <Button
-        android:id="@+id/btn_sign_up"
+    <FrameLayout
+        android:id="@+id/fl_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="S I G N   U P"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/corner"
-        android:layout_marginHorizontal="70dp"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        android:padding="12dp"
-        />
+        android:layout_height="match_parent"
+        android:layout_above="@id/bnv_navigasi_bawah" />
 
-</LinearLayout>
+</RelativeLayout>

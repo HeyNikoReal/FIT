@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">LittleCare</string>
+    <string name="login"><font color="#C96FE4">Belum Punya Akun? </font><font color="#39B1F1"><b><u>SIGN UP</u></b></font> Sekarang </string>
+    <string name="signup"><font color="#C96FE4">Sudah Punya Akun? </font><font color="#39B1F1"><b><u>LOGIN</u></b></font> Sekarang </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
