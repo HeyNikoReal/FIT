@@ -26,7 +26,11 @@ import com.example.littlecare.Activity.EditProfileActivity;
 import com.example.littlecare.Activity.KendaliLogin;
 import com.example.littlecare.Activity.MainActivity;
 import com.example.littlecare.Model.User.ModelResponse;
+import com.example.littlecare.Model.User.ModelUser;
 import com.example.littlecare.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -89,10 +93,13 @@ public class SettingFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        if(getActivity()!=null){
-            Button btnEdit, btnUpgrade, btnHapus, btnLogout;
+        if (getActivity() != null) {
             KendaliLogin KL = new KendaliLogin(getActivity());
+            Button btnEdit, btnUpgrade, btnHapus, btnLogout;
+            btnUpgrade = view.findViewById(R.id.btn_upgrade);
+            if(KL.getPref(KL.keySP_status).equals("Premium")){
+                btnUpgrade.setVisibility(view.GONE);
+            }
             TextView tvNama, tvStatus, tvEmail;
             String yNama, yEmail, yStatus, yID;
             TextView tvID;
@@ -111,10 +118,34 @@ public class SettingFragment extends Fragment {
             tvEmail.setText(yEmail);
 
             btnEdit = view.findViewById(R.id.btn_edit);
-            btnUpgrade = view.findViewById(R.id.btn_upgrade);
             btnHapus = view.findViewById(R.id.btn_hapus);
             btnLogout = view.findViewById(R.id.btn_logout);
 
+            btnUpgrade.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                    dialog.setTitle("Konfirmasi");
+                    dialog.setMessage("Apakah Anda yakin ingin upgrade ke Status Premium(Rp. 25.000,00/bulan)?");
+
+                    dialog.setPositiveButton("Tidak", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int which) {
+                        }
+                    });
+
+                    dialog.setNegativeButton("Ya", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int which) {
+                            upgradePremium();
+                            Toast.makeText(getActivity(), "Upgrade Berhasil! Silahkan Login Kembali.", Toast.LENGTH_SHORT).show();
+                            getActivity().finish();
+
+                        }
+                    });
+                    dialog.show();
+                }
+            });
 
             btnEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -140,11 +171,6 @@ public class SettingFragment extends Fragment {
                     dialog.setNegativeButton("Ya", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int which) {
-                            KL.setPref(KL.keySP_id, null);
-                            KL.setPref(KL.keySP_nama, null);
-                            KL.setPref(KL.keySP_email, null);
-                            KL.setPref(KL.keySP_password, null);
-                            KL.setPref(KL.keySP_status, null);
                             deleteUser(yID);
                         }
                     });
@@ -173,8 +199,8 @@ public class SettingFragment extends Fragment {
                             KL.setPref(KL.keySP_email, null);
                             KL.setPref(KL.keySP_password, null);
                             KL.setPref(KL.keySP_status, null);
-                            Toast.makeText(getActivity(), "Anda berhasil Logout", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getActivity() , BerandaActivity.class));
+                            Toast.makeText(getActivity(), "Anda berhasil Logout!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getActivity(), BerandaActivity.class));
                             getActivity().finish();
                         }
 
@@ -186,6 +212,34 @@ public class SettingFragment extends Fragment {
         }
     }
 
+    public void upgradePremium() {
+        final List<ModelUser>[] listUser = new List[]{new ArrayList<>()};
+        KendaliLogin KL = new KendaliLogin(getActivity());
+        APIRequestData ARD = RetroServer.konekRetrofit().create(APIRequestData.class);
+        Call<ModelResponse> proses = ARD.ardUpgrade(KL.getPref(KL.keySP_id), KL.getPref(KL.keySP_status));
+
+        proses.enqueue(new Callback<ModelResponse>() {
+            @Override
+            public void onResponse(Call<ModelResponse> call, Response<ModelResponse> response) {
+                String kode = response.body().getKode();
+                String pesan = response.body().getPesan();
+                listUser[0] = response.body().getData();
+
+                if (kode.equals("0")) {
+                    Toast.makeText(getActivity(), "Error! Ada Kesalahan saat Upgrade ke Premium",Toast.LENGTH_SHORT).show();
+                } else {
+                    KL.setPref(KL.keySP_status, listUser[0].get(0).getStatus());
+                    getActivity().finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ModelResponse> call, Throwable t) {
+                Toast.makeText(getActivity(), "Error! Gagal Terhubung ke Server", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void deleteUser(String id) {
         APIRequestData ARD = RetroServer.konekRetrofit().create(APIRequestData.class);
         Call<ModelResponse> proses = ARD.ardDeleteUser(id);
@@ -195,8 +249,6 @@ public class SettingFragment extends Fragment {
                 String pesan = response.body().getPesan();
                 String kode = response.body().getKode();
                 Toast.makeText(getActivity(), "Akun Berhasil dihapus", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getActivity() , BerandaActivity.class));
-                getActivity().finish();
             }
 
             @Override

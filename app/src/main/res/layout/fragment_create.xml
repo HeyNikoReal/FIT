@@ -3,12 +3,131 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.CreateFragment">
+    tools:context=".Fragment.CreateFragment"
+    android:background="@drawable/bg"
+    >
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_margin="20dp">
+
+        <TextView
+            android:id="@+id/tv_judul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="75dp"
+            android:text="DAFTARKAN DATA APLIKASIMU"
+            android:textColor="@color/ungu"
+            android:textSize= "20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_nama_game"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/corner"
+            android:drawableStart="@drawable/ic_person"
+            android:drawablePadding="20dp"
+            android:hint="Nama Game/Aplikasi"
+            android:inputType="text"
+            android:padding="15dp"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/et_creator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/corner"
+            android:drawableStart="@drawable/ic_group"
+            android:drawablePadding="20dp"
+            android:hint="Creator/Developer"
+            android:inputType="text"
+            android:padding="15dp"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/et_deskripsi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/corner"
+            android:drawableStart="@drawable/ic_note"
+            android:drawablePadding="20dp"
+            android:hint="Deskripsi"
+            android:inputType="text"
+            android:padding="15dp"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/et_rating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/corner"
+            android:drawableStart="@drawable/ic_star"
+            android:drawablePadding="20dp"
+            android:hint="Rating Game/Aplikasi"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/et_link_foto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/corner"
+            android:drawableStart="@drawable/ic_link"
+            android:drawablePadding="20dp"
+            android:hint="URL Foto Aplikasi"
+            android:inputType="text"
+            android:padding="15dp"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/et_link_game"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/corner"
+            android:drawableStart="@drawable/ic_link"
+            android:drawablePadding="20dp"
+            android:hint="URL Link Aplikasi"
+            android:inputType="text"
+            android:padding="15dp"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn_tambah"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/corner"
+            android:padding="12dp"
+            android:text="T A M B A H"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</ScrollView>
 
 </FrameLayout>

@@ -15,7 +15,7 @@
 //import androidx.annotation.NonNull;
 //import androidx.recyclerview.widget.RecyclerView;
 //
-//import com.example.littlecare.Model.Game.ModelGame;
+//import com.example.littlecare.Model.Game.Standard.ModelGame;
 //import com.example.littlecare.Model.Home.ModelHome;
 //import com.example.littlecare.R;
 //

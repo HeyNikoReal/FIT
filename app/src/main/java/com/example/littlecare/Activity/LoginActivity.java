@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                 listPengguna = response.body().getData();
 
                 if (kode.equals("0")) {
-                    Toast.makeText(LoginActivity.this, "Username atau Password Salah !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Email atau Password Salah !", Toast.LENGTH_SHORT).show();
                 } else {
                     KL.setPref(KL.keySP_id, listPengguna.get(0).getId_user());
                     KL.setPref(KL.keySP_nama, listPengguna.get(0).getNama());
@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                     KL.setPref(KL.keySP_password, listPengguna.get(0).getPassword());
                     KL.setPref(KL.keySP_status, listPengguna.get(0).getStatus());
 
-                    Toast.makeText(LoginActivity.this, "Login Berhasil. Selamat Datang, " + listPengguna.get(0).getNama(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Login Berhasil.", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
 

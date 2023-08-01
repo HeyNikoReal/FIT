@@ -14,51 +14,95 @@
         android:padding="20dp">
 
         <TextView
+            android:id="@+id/tv_id2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_deskripsi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_linkgame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_linkfoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+
+        <TextView
             android:id="@+id/tv_foto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone" />
 
         <ImageView
-            android:id="@+id/iv_foto"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:id="@+id/iv_foto2"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
             android:layout_marginStart="10dp"
             android:src="@mipmap/ic_launcher" />
 
         <TextView
-            android:id="@+id/tv_nama"
+            android:id="@+id/tv_nama2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/iv_foto"
+            android:layout_toEndOf="@id/iv_foto2"
             android:text="Nama"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/black"
+
+            android:textColor="@color/biru"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tv_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_nama2"
+            android:layout_marginStart="10dp"
+            android:textSize="15sp"
+            android:layout_toEndOf="@id/iv_foto2"
+            android:text="Rating"
+            android:textColor="@color/ungu" />
+        <TextView
             android:id="@+id/tv_creator2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_nama"
+            android:layout_below="@id/tv_rating"
             android:layout_marginStart="10dp"
             android:textSize="15sp"
-            android:layout_toEndOf="@id/iv_foto"
+            android:layout_toEndOf="@id/iv_foto2"
             android:text="Creator : "
-            android:textColor="@color/black" />
+            android:textColor="@color/ungu" />
 
         <TextView
-            android:id="@+id/tv_creator"
+            android:id="@+id/tv_creators"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_nama"
+            android:layout_below="@id/tv_rating"
             android:layout_marginStart="70dp"
             android:textSize="15sp"
-            android:layout_toEndOf="@id/iv_foto"
+            android:layout_toEndOf="@id/iv_foto2"
             android:text="Creator"
-            android:textColor="@color/black" />
+            android:textColor="@color/ungu" />
+
+        <TextView
+            android:id="@+id/tv_teks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_creator2"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:textSize="10sp"
+            android:layout_toEndOf="@id/iv_foto2"
+            android:text="Lihat Selengkapnya"
+            android:textColor="@color/biru" />
 
 
     </RelativeLayout>

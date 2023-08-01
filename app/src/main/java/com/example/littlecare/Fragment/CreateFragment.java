@@ -1,14 +1,35 @@
 package com.example.littlecare.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.littlecare.API.APIRequestData;
+import com.example.littlecare.API.RetroServer;
+import com.example.littlecare.Activity.LoginActivity;
+import com.example.littlecare.Activity.MainActivity;
+import com.example.littlecare.Model.Game.ModelResponseGame;
+import com.example.littlecare.Model.User.ModelResponse;
+import com.example.littlecare.Model.User.ModelUser;
 import com.example.littlecare.R;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +46,7 @@ public class CreateFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    String nama, creator, rating, deskripsi, linkgame, linkfoto;
 
     public CreateFragment() {
         // Required empty public constructor
@@ -62,5 +84,71 @@ public class CreateFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_create, container, false);
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if (getActivity() != null) {
+            EditText etNama, etCreator, etRating, etDeskripsi, etLinkFoto, etLinkGame;
+            Button btnTambah;
+            etNama = view.findViewById(R.id.et_nama_game);
+            etCreator = view.findViewById(R.id.et_creator);
+            etRating = view.findViewById(R.id.et_rating);
+            etDeskripsi = view.findViewById(R.id.et_deskripsi);
+            etLinkFoto = view.findViewById(R.id.et_link_foto);
+            etLinkGame = view.findViewById(R.id.et_link_game);
+            btnTambah = view.findViewById(R.id.btn_tambah);
+
+            btnTambah.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    nama = etNama.getText().toString();
+                    creator = etCreator.getText().toString();
+                    rating = etRating.getText().toString();
+                    deskripsi = etDeskripsi.getText().toString();
+                    linkfoto = etLinkFoto.getText().toString();
+                    linkgame = etLinkGame.getText().toString();
+
+                    if (nama.trim().isEmpty()) {
+                        etNama.setError("Nama APK Harus diIsi!");
+                    } else if (creator.trim().isEmpty()) {
+                        etCreator.setError("Creator APK Harus diIsi!");
+                    } else if (deskripsi.trim().isEmpty()) {
+                        etDeskripsi.setError("Deskripsi APK Harus diIsi!");
+                    } else if (rating.trim().isEmpty()) {
+                        etRating.setError("Rating APK Harus diIsi!");
+                    } else if (linkfoto.trim().isEmpty()) {
+                        etLinkFoto.setError("URL/Link Gambar Foto APK Harus diIsi!");
+                    } else if (linkgame.trim().isEmpty()) {
+                        etLinkGame.setError("URL/LINK Game APK Harus diIsi!");
+                    } else {
+                        tambahGame();
+                    }
+                }
+            });
+
+        }
+    }
+
+    public void tambahGame() {
+        APIRequestData ARD = RetroServer.konekRetrofit().create(APIRequestData.class);
+        Call<ModelResponseGame> proses = ARD.ardCreateGame(nama, creator, deskripsi, rating, linkfoto, linkgame);
+        proses.enqueue(new Callback<ModelResponseGame>() {
+            @Override
+            public void onResponse(Call<ModelResponseGame> call, Response<ModelResponseGame> response) {
+                String pesan = response.body().getPesan();
+                String kode = response.body().getKode();
+                Toast.makeText(getActivity(), "Selamat! Data Aplikasi Anda telah ditambahkan ke List.", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<ModelResponseGame> call, Throwable t) {
+                Toast.makeText(getActivity(), "Gagal Menghubungi Server!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
+

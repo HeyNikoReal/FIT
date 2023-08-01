@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
         } else {
             setContentView(R.layout.activity_main);
+            Toast.makeText(MainActivity.this, "Selamat Datang Kembali, " + KL.getPref(KL.keySP_nama),Toast.LENGTH_LONG).show();
             bukafragment(new HomeFragment());
 
             bnvMenu = findViewById(R.id.bnv_navigasi_bawah);
